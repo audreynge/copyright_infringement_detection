@@ -1,9 +1,11 @@
 {
   "name": "copyright_infringement_detection",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.ts",
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "dev": "node --loader ts-node/esm src/index.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/audreynge/copyright_infringement_detection.git"
@@ -21,9 +23,11 @@
     "@types/node": "^24.3.0"
   },
   "dependencies": {
-    "playwright": "^1.54.2",
-    "playwright-extra": "^4.3.6",
-    "playwright-extra-plugin-stealth": "^0.0.1",
-    "puppeteer-extra-plugin-stealth": "^2.11.2"
+    "cheerio": "^1.1.2",
+    "js-beautify": "^1.15.4",
+    "puppeteer": "^24.32.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "ts-node": "^10.9.2"
   }
 }
