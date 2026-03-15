@@ -1,5 +1,5 @@
 import scrapeHtml from './scrapers/scraper.js';
-import parseAliexpressProducts from './parsers/parseAliexpressProducts.js';
+import parseAliexpressProducts from './parsers/parseAliExpressProducts.js';
 import fs from 'fs';
 import { execSync } from 'child_process';
 
@@ -11,8 +11,9 @@ const main = async () => {
     fs.writeFileSync('data/products_raw_aliexpress.json', JSON.stringify(aliexpressProducts, null, 2));
 
     execSync("python3 ml/preprocessing/clean_reference_data.py", { stdio: "inherit" });
-    execSync("python3 ml/preprocessing/make_dataset.py", { stdio: "inherit" });
-
+    execSync("python3 ml/preprocessing/clean_candidate_data.py", { stdio: "inherit" });
+    execSync("python3 ml/preprocessing/download_images.py", { stdio: "inherit" });
+    
   } catch (error) {
     console.error('Error:', (error as Error).message);
     process.exit(1);

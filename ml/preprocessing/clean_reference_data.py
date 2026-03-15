@@ -3,6 +3,8 @@ import pandas as pd
 
 def get_reference_products(url: str) -> list[dict]:
   res = requests.get(url)
+  res.raise_for_status()
+  
   products = res.json().get('products', [])
 
   rows = []
