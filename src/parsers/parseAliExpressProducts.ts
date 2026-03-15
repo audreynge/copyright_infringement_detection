@@ -31,9 +31,9 @@ const parseProducts = async (html: string): Promise<Product[]> => {
 
     if (productId && title && imageUrl) {
       products.push({
-        productId,
+        product_id: productId,
         title: title.trim(),
-        imageUrl: imageUrl.startsWith('//') ? `https:${imageUrl}` : imageUrl,
+        image_url: imageUrl.startsWith('//') ? `https:${imageUrl}` : imageUrl,
         url
       });
     }

@@ -1,25 +1,20 @@
-import scrapeHtml from './scrapers/aliexpressScraper.js';
-import parseProducts from './parsers/parseProducts.js';
+import scrapeHtml from './scrapers/scraper.js';
+import parseAliexpressProducts from './parsers/parseAliexpressProducts.js';
+import fs from 'fs';
+import { execSync } from 'child_process';
 
 const main = async () => {
   try {
-    const url = 'https://www.aliexpress.us/w/wholesale-mama-elephant-cute-clear-stamps.html?page=1&g=y&SearchText=mama+elephant+cute+clear+stamps';
-    const html = await scrapeHtml(url);
-    const products = await parseProducts(html);
-    
-    console.log('\n=== Parsed Products ===');
-    console.log(`Total products found: ${products.length}\n`);
-    
-    products.forEach((product, index) => {
-      console.log(`Product ${index + 1}:`);
-      console.log(`  ID: ${product.productId}`);
-      console.log(`  Title: ${product.title}`);
-      console.log(`  Image: ${product.imageUrl}`);
-      console.log(`  URL: ${product.url || 'N/A'}`);
-      console.log('');
-    });
+    const aliexpressUrl = 'https://www.aliexpress.us/w/wholesale-mama-elephant-cute-clear-stamps.html?page=1&g=y&SearchText=mama+elephant+cute+clear+stamps';
+    const aliexpressHtml = await scrapeHtml(aliexpressUrl);
+    const aliexpressProducts = await parseAliexpressProducts(aliexpressHtml);
+    fs.writeFileSync('data/products_raw_aliexpress.json', JSON.stringify(aliexpressProducts, null, 2));
+
+    execSync("python3 ml/preprocessing/clean_reference_data.py", { stdio: "inherit" });
+    execSync("python3 ml/preprocessing/make_dataset.py", { stdio: "inherit" });
+
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Error:', (error as Error).message);
     process.exit(1);
   }
 }

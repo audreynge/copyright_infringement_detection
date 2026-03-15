@@ -1,12 +1,14 @@
 import puppeteer from 'puppeteer-extra';
 import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import * as readline from 'readline';
-import { writeFileSync } from 'fs';
-import { exec } from 'child_process';
-import { join } from 'path';
 
 puppeteer.use(StealthPlugin());
 
+/**
+ * Waits for the user to press 'Enter' to ensure that they have completed
+ * the bot check in the browser window.
+ * @returns A promise that resolves when the user has pressed 'Enter'.
+ */
 const waitForUserInput = (): Promise<void> => {
   const rl = readline.createInterface({
     input: process.stdin,
@@ -23,6 +25,11 @@ const waitForUserInput = (): Promise<void> => {
   });
 };
 
+/**
+ * Scrapes the HTML of a given URL.
+ * @param url - The URL to scrape.
+ * @returns The HTML of the page.
+ */
 const scrapeHtml = async (url: string) => {
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
@@ -44,10 +51,12 @@ const scrapeHtml = async (url: string) => {
   await new Promise(resolve => setTimeout(resolve, 1000));
   
   const html = await page.content();
-  const filePath = join(process.cwd(), 'scraped-page.txt');
-  writeFileSync(filePath, html, 'utf-8');
-  exec(`open "${filePath}"`);
+  // const filePath = join(process.cwd(), 'scraped-page.txt');
+  // writeFileSync(filePath, html, 'utf-8');
+  // exec(`open "${filePath}"`);
   console.log('Page scraped successfully');
+
+  await browser.close();
   
   return html;
 };
