@@ -4,7 +4,7 @@ import pandas as pd
 def get_reference_products(url: str) -> list[dict]:
   res = requests.get(url)
   res.raise_for_status()
-  
+
   products = res.json().get('products', [])
 
   rows = []
@@ -21,7 +21,7 @@ def get_reference_products(url: str) -> list[dict]:
     })
 
   df = pd.DataFrame(rows)
-  df.to_csv('data/products_reference.csv', index=False)
+  df.to_csv('data/reference_products.csv', index=False)
 
 if __name__ == '__main__':
   url = 'https://mamaelephant.com/collections/stamps/products.json'

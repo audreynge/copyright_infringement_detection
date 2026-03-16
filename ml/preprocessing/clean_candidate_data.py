@@ -7,7 +7,7 @@ def load_data(products_raw_path: str) -> pd.DataFrame:
   with open(products_raw_path, 'r') as f:
     data = pd.read_json(f)
 
-  return data.to_csv('data/products_candidates.csv', index=False)
+  return data.to_csv('data/candidate_products.csv', index=False)
 
 if __name__ == '__main__':
   load_data('data/products_raw_aliexpress.json')
