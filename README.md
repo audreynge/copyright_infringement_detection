@@ -1,4 +1,4 @@
-# Copyright Infringement Detector
+# Copywatch - Copyright Infringement Detector
 
 This project was made in an effort to explore the issue of small arts businesses' content being stolen and reuploaded as a cheaper product on other third party sites.
 

@@ -9,12 +9,12 @@
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "rootDir": "./src"
   },
   "ts-node": {
     "esm": true
   },
-  "include": ["src/**/*", "playwright.config.ts"],
   "exclude": ["node_modules"]
 }
 

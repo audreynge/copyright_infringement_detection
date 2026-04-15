@@ -19,7 +19,6 @@
   "homepage": "https://github.com/audreynge/copyright_infringement_detection#readme",
   "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.54.2",
     "@types/node": "^24.3.0"
   },
   "dependencies": {
