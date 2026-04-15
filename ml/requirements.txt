@@ -1,0 +1,9 @@
+requests
+pillow
+pandas
+numpy
+torch
+torchvision
+transformers
+pillow-avif-plugin
+scikit-learn

@@ -13,8 +13,8 @@ copyright_infringement_detection/
 │  └─ types/
 ├─ ml/                          # Python ML code
 │  ├─ preprocessing/            # cleaning/feature building
-│  ├─ training/                 # model training
 │  ├─ inference/                # load model + generate predictions
+│  ├─ training/                 # model training
 │  ├─ evaluation/               # determine accuracy, precision, recall, F1
 ├─ data/                        # shared inputs/outputs
 └─ models/
@@ -23,4 +23,7 @@ copyright_infringement_detection/
 ## To start
 1. `cd src`
 2. `npm install`
-3. `npm run dev`
+3. `cd ../ml`
+4. `pip install -r requirements.txt`
+5. `cd ..`
+6. `npm run dev`

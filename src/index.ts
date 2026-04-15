@@ -13,6 +13,7 @@ const main = async () => {
     execSync("python3 ml/preprocessing/clean_reference_data.py", { stdio: "inherit" });
     execSync("python3 ml/preprocessing/clean_candidate_data.py", { stdio: "inherit" });
     execSync("python3 ml/preprocessing/download_images.py", { stdio: "inherit" });
+    execSync("python3 ml/preprocessing/generate_embeddings.py", { stdio: "inherit" });
     
   } catch (error) {
     console.error('Error:', (error as Error).message);
